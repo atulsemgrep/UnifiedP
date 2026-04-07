@@ -37,11 +37,11 @@ def idor_login_api(request, app):
 
 
 def idor_profile_page(request, app):
-    if request.cookies.get('session_token') != user.password:
-        return redirect(url_for('idor_login'))
-    
-
     user_id = request.cookies.get('user_id')
+    session_token = request.cookies.get('session_token')
+
+    if not user_id or not session_token:
+        return redirect(url_for('idor_login'))
 
     db_result = app.db_helper.execute_read(
         f"SELECT * FROM users WHERE id=:user_id",
@@ -49,7 +49,7 @@ def idor_profile_page(request, app):
     )
 
     if len(db_result) == 0:
-        return render_template('idor/idor_profile.html', user=None), 404
+        return redirect(url_for('idor_login'))
 
     user = list(
         map(
@@ -57,6 +57,11 @@ def idor_profile_page(request, app):
             db_result
         )
     )[0]
+
+    # Verify the session_token matches this user's password hash
+    # This ensures the authenticated user can only view their own profile
+    if session_token != user.password:
+        return redirect(url_for('idor_login'))
 
     return render_template('idor/idor_profile.html', user=user)
 
