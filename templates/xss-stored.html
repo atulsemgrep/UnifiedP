@@ -8,6 +8,7 @@
 
   <h2 class="subtitle">Send Message</h2>
   <form action="/xss/stored" method="post">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token() }}">
     <div class="field">
         <label class="label">Name</label>
         <div class="control">
@@ -26,7 +27,6 @@
 
   <h2 class="subtitle">Messages</h2>
   <div class="content">
-    {% autoescape false %}
         {% for msg in messages %}
             <article class="message">
               <div class="message-body">
@@ -34,7 +34,6 @@
               </div>
             </article>
         {% endfor %}
-    {% endautoescape %}
   </div>
 </div>
 </section>

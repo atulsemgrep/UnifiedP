@@ -1,4 +1,5 @@
-import urllib.request
+import requests
+from urllib.parse import urlparse
 from flask import render_template
 
 
@@ -30,15 +31,18 @@ def _download_image(url, app):
     if not url:
         return ''
 
-    download_image_path = ''
+    parsed = urlparse(url)
+    if parsed.scheme not in ('http', 'https'):
+        raise ValueError('Only http(s) image URLs are allowed')
+    if parsed.hostname in ('localhost', '127.0.0.1', '::1'):
+        raise ValueError('Local URLs are not allowed')
 
-    with urllib.request.urlopen(url) as f:
-        download_image_path = f"{app.config['PUBLIC_UPLOAD_FOLDER']}/downloaded-image.png"
+    response = requests.get(url, timeout=5)
+    response.raise_for_status()
 
-        with open(download_image_path, 'wb') as file:
-            file_content = f.read()
-            file.write(file_content)
-            file.close()
+    download_image_path = f"{app.config['PUBLIC_UPLOAD_FOLDER']}/downloaded-image.png"
+    with open(download_image_path, 'wb') as file:
+        file.write(response.content)
 
     public_url = f"{app.config['PUBLIC_UPLOADS_URL']}/downloaded-image.png"
 

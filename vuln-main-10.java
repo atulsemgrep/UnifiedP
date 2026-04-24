@@ -7,12 +7,12 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 public class App
 {
 
-    static String secret = "secret";
+    static String secret = System.getenv("JWT_SECRET");
 
     private static void bad1() {
         try {
             // ruleid: java-jwt-hardcoded-secret
-            Algorithm algorithm = Algorithm.HMAC256("secret");
+            Algorithm algorithm = Algorithm.HMAC256(secret);
             String token = JWT.create()
                 .withIssuer("auth0")
                 .sign(algorithm);
@@ -43,7 +43,7 @@ public class App
 abstract class App2
 {
 // ruleid: java-jwt-hardcoded-secret
-    static String secret = "secret";
+    static String secret = System.getenv("JWT_SECRET");
 
     public void bad2() {
         try {

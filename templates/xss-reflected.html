@@ -10,9 +10,7 @@
     <p>
       Result for query <i>search</i>:
       
-      {% autoescape false %}
-        {{ request.args.get('search') }}
-      {% endautoescape %}
+      {{ request.args.get('search') }}
     </p>
   </div>
 

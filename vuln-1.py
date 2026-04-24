@@ -16,12 +16,18 @@ def route_param(route_param):
         'whoami': ['/usr/bin/whoami']
     }
     
-    if route_param not in ALLOWED_COMMANDS:
+    if route_param == 'date':
+        command = ['/bin/date']
+    elif route_param == 'uptime':
+        command = ['/usr/bin/uptime']
+    elif route_param == 'whoami':
+        command = ['/usr/bin/whoami']
+    else:
         return flask.jsonify({"error": "Command not allowed"}), 403
-    
+
     try:
         result = subprocess.run(
-            ALLOWED_COMMANDS[route_param],
+            command,
             capture_output=True,
             text=True,
             timeout=5,
