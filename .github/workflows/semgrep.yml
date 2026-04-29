@@ -36,7 +36,7 @@ jobs:
     # gh secret set SEMGREP_APP_TOKEN --repo chris73adkin/bad-python-app
       - run: semgrep ci
         env:
-          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_API_TOKEN }}
 
       # In a real pipeline, the exit code of `semgrep ci` would gate
       # downstream stages (build, publish, deploy). A non-zero exit means
