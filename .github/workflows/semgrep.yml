@@ -1,0 +1,59 @@
+name: Semgrep
+
+on:
+  # Full scan on default branch — establishes baseline, catches anything merged
+  push:
+    branches: [main]
+
+  # Diff-aware scan on PRs — only reports new findings the PR introduces
+  pull_request: {}
+
+  # Periodic full scan — picks up newly-published rules against existing code
+  schedule:
+    - cron: '23 17 * * *'
+
+  workflow_dispatch: {}
+
+jobs:
+  semgrep:
+    name: semgrep/ci
+    runs-on: ubuntu-latest
+
+    # Dependabot PRs don't have access to repo secrets, so the token wouldn't
+    # be available and the job would fail noisily. Skip them.
+    if: (github.actor != 'dependabot[bot]')
+
+    container:
+      image: semgrep/semgrep
+
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+    # gh command to set the token
+    # gh secret set SEMGREP_APP_TOKEN --repo chris73adkin/bad-python-app
+      - run: semgrep ci
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+
+      # In a real pipeline, the exit code of `semgrep ci` would gate
+      # downstream stages (build, publish, deploy). A non-zero exit means
+      # one or more findings tagged as **blocking** in the Semgrep Cloud
+      # policy were reported — i.e. issues serious enough that the team
+      # has decided shipping should stop until they're triaged or fixed.
+      #
+      # Findings tagged as **monitor** or **comment** still surface in the
+      # UI / on the PR but do not fail the job, so they don't gate the
+      # build. The blocking/monitor/comment classification lives in the
+      # Semgrep Cloud rule policy, not in this workflow.
+      #
+      # A typical follow-on job would declare `needs: semgrep` and rely on
+      # the implicit "skip on upstream failure" behaviour — e.g. only build
+      # and push the container image when the scan came back clean.
+      #
+      # We deliberately don't do that here: this repo is intentionally
+      # vulnerable, so the scan is expected to fail every run and any
+      # gated build job would never fire. The point of the workflow in
+      # this repo is to demonstrate the scan itself.
