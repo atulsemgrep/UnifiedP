@@ -127,3 +127,9 @@ def idor_profile():
 @app.route('/iframe-injection', methods=['GET'])
 def iframe_injection():
     return iframe_injection_page(request, app)
+
+
+if __name__ == "__main__":
+    # Semgrep hook demo: if this line uses debug=True, Cursor afterFileEdit runs
+    # .cursor/hooks/semgrep-autofix.sh → semgrep --autofix (semgrep/autofix-demo.yml) and rewrites to False.
+    app.run(host="127.0.0.1", port=5000, debug=False)
