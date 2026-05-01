@@ -113,6 +113,37 @@ build job would never fire. See the comments in the workflow for the shape
 a real one would take.
 
 
+## Demoing diff-aware scans locally
+
+To see the difference between a full scan and a diff-aware scan, create a
+branch with a single new vulnerable line and scan it against `main` as the
+baseline:
+
+```sh
+# Create a branch and add one new vulnerable line
+git checkout -b test-diff-aware
+echo 'eval(input())' >> vuln-1.py
+git add vuln-1.py
+git commit -m "test: add one new vuln for diff scan"
+
+# Run a diff-aware scan against main as the baseline
+SEMGREP_BASELINE_REF=main semgrep scan --config auto
+```
+
+Expected output: one finding (the `eval(input())` you just added), not the
+dozens that exist across the rest of the repo. If you see all the existing
+findings too, diff-aware didn't engage.
+
+To compare, run it without the baseline:
+
+```sh
+semgrep scan --config auto
+```
+
+You should see a flood of findings — that's the full-repo baseline. The
+contrast between the two runs is the demo.
+
+
 ## Layout
 
 ```

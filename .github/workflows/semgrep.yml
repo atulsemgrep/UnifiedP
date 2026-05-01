@@ -31,6 +31,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history so `semgrep ci` can resolve origin/<base-branch> as the
+          # diff-aware baseline. The default fetch-depth: 1 is a shallow clone
+          # and the baseline ref isn't reachable, which silently degrades the
+          # PR scan to a full-repo scan.
+          fetch-depth: 0
 
     # gh command to set the token
     # gh secret set SEMGREP_APP_TOKEN --repo chris73adkin/bad-python-app
@@ -38,22 +44,43 @@ jobs:
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
 
-      # In a real pipeline, the exit code of `semgrep ci` would gate
-      # downstream stages (build, publish, deploy). A non-zero exit means
-      # one or more findings tagged as **blocking** in the Semgrep Cloud
-      # policy were reported — i.e. issues serious enough that the team
-      # has decided shipping should stop until they're triaged or fixed.
       #
-      # Findings tagged as **monitor** or **comment** still surface in the
-      # UI / on the PR but do not fail the job, so they don't gate the
-      # build. The blocking/monitor/comment classification lives in the
-      # Semgrep Cloud rule policy, not in this workflow.
+      # **** Code for scan without semgrep SaaS interaction ****
       #
-      # A typical follow-on job would declare `needs: semgrep` and rely on
-      # the implicit "skip on upstream failure" behaviour — e.g. only build
-      # and push the container image when the scan came back clean.
+      # Several patterns for 
+
+      # - run: |
+      #     set -euo pipefail
       #
-      # We deliberately don't do that here: this repo is intentionally
-      # vulnerable, so the scan is expected to fail every run and any
-      # gated build job would never fire. The point of the workflow in
-      # this repo is to demonstrate the scan itself.
+      #     # Diff-aware on PRs only; full scan on push / cron / dispatch.
+      #     BASELINE_ARGS=()
+      #     if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+      #       BASELINE_ARGS=(--baseline-commit "origin/$GITHUB_BASE_REF")
+      #     fi
+      #
+      #     # --config points at the cloned rules tree. Multiple --config
+      #     # flags merge; add language-specific subdirs as needed. Do NOT
+      #     # use --config auto or --config p/<ruleset> — both call
+      #     # semgrep.dev and will fail (or, worse, silently skip rules)
+      #     # in the air gap.
+      #     semgrep scan \
+      #       --config .semgrep-rules/python \
+      #       --config .semgrep-rules/shared \
+      #       --metrics=off \
+      #       --sarif --output semgrep.sarif \
+      #       --json  --output semgrep.json \
+      #       "${BASELINE_ARGS[@]}"
+      #   env:
+      #     # Belt-and-braces: kill any residual telemetry / cloud calls.
+      #     SEMGREP_SEND_METRICS: "off"
+      #     SEMGREP_ENABLE_VERSION_CHECK: "0"
+      #
+      # - name: Upload results as workflow artifact
+      #   if: always()
+      #   uses: internal-actions/upload-artifact@v4
+      #   with:
+      #     name: semgrep-results
+      #     path: |
+      #       semgrep.sarif
+      #       semgrep.json
+      #     retention-days: 30

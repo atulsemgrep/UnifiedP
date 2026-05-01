@@ -1,0 +1,26 @@
+rules:
+  - id: appsec.shared.aws-access-key
+    message: |
+      Possible AWS access key committed to source. Steps:
+        1. Rotate the key in AWS IAM immediately. Do this BEFORE removing
+           it from history — the key is already exposed; re-issuing
+           closes the window.
+        2. Remove from git history with git-filter-repo (not git rebase —
+           force-push of a public branch leaves the old SHA reachable).
+        3. Move the credential to the org secrets manager and reference
+           it via the standard SDK chain.
+    severity: ERROR
+    languages: [generic]
+    metadata:
+      confidence: HIGH
+      category: secrets
+      cwe: "CWE-798: Use of Hard-coded Credentials"
+    pattern-regex: \bAKIA[0-9A-Z]{16}\b
+    paths:
+      exclude:
+        # Test fixtures legitimately contain fake-shaped keys for negative
+        # tests; the regex would false-positive on these.
+        - "**/tests/**"
+        - "**/test/**"
+        - "**/fixtures/**"
+        - "**/*.test.*"
