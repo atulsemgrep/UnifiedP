@@ -1,0 +1,41 @@
+rules:
+  - id: appsec.python.flask.sqli-taint
+    message: |
+      Untrusted input from a Flask request flows into a raw SQL execute()
+      call. Use a parameterised query: cursor.execute("... WHERE id = ?",
+      (user_id,)) — not string formatting / f-strings / .format / %.
+
+      Taint mode means this rule reasons about data flow, not just the
+      shape of the call site, so FP rate is low. If you do hit one,
+      prefer adding a sanitiser (see pattern-sanitizers below) over a
+      `nosemgrep` suppression — that improves precision for everyone.
+    severity: ERROR
+    languages: [python]
+    metadata:
+      confidence: HIGH
+      category: security
+      cwe: "CWE-89: SQL Injection"
+      owasp: "A03:2021 - Injection"
+    mode: taint
+    pattern-sources:
+      - pattern: flask.request.args.get(...)
+      - pattern: flask.request.form.get(...)
+      - pattern: flask.request.values.get(...)
+      - pattern: flask.request.json[...]
+      - pattern: flask.request.args[...]
+      - pattern: flask.request.form[...]
+    pattern-sanitizers:
+      # int coercion is a common safe path for ID parameters.
+      - pattern: int(...)
+      # Explicit allow-listing via a known-safe set.
+      - pattern: |
+          $X if $X in $ALLOWED else ...
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: $CURSOR.execute($Q, ...)
+              - pattern: $CURSOR.executemany($Q, ...)
+          # Don't fire when the query is a string literal followed by a
+          # tuple of parameters — that's the parameterised form.
+          - pattern-not: $CURSOR.execute("...", ...)
+          - pattern-not: $CURSOR.executemany("...", ...)

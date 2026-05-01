@@ -1,0 +1,86 @@
+name: Semgrep
+
+on:
+  # Full scan on default branch — establishes baseline, catches anything merged
+  push:
+    branches: [main]
+
+  # Diff-aware scan on PRs — only reports new findings the PR introduces
+  pull_request: {}
+
+  # Periodic full scan — picks up newly-published rules against existing code
+  schedule:
+    - cron: '23 17 * * *'
+
+  workflow_dispatch: {}
+
+jobs:
+  semgrep:
+    name: semgrep/ci
+    runs-on: ubuntu-latest
+
+    # Dependabot PRs don't have access to repo secrets, so the token wouldn't
+    # be available and the job would fail noisily. Skip them.
+    if: (github.actor != 'dependabot[bot]')
+
+    container:
+      image: semgrep/semgrep
+
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history so `semgrep ci` can resolve origin/<base-branch> as the
+          # diff-aware baseline. The default fetch-depth: 1 is a shallow clone
+          # and the baseline ref isn't reachable, which silently degrades the
+          # PR scan to a full-repo scan.
+          fetch-depth: 0
+
+    # gh command to set the token
+    # gh secret set SEMGREP_APP_TOKEN --repo chris73adkin/bad-python-app
+      - run: semgrep ci
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+
+      #
+      # **** Code for scan without semgrep SaaS interaction ****
+      #
+      # Several patterns for 
+
+      # - run: |
+      #     set -euo pipefail
+      #
+      #     # Diff-aware on PRs only; full scan on push / cron / dispatch.
+      #     BASELINE_ARGS=()
+      #     if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+      #       BASELINE_ARGS=(--baseline-commit "origin/$GITHUB_BASE_REF")
+      #     fi
+      #
+      #     # --config points at the cloned rules tree. Multiple --config
+      #     # flags merge; add language-specific subdirs as needed. Do NOT
+      #     # use --config auto or --config p/<ruleset> — both call
+      #     # semgrep.dev and will fail (or, worse, silently skip rules)
+      #     # in the air gap.
+      #     semgrep scan \
+      #       --config .semgrep-rules/python \
+      #       --config .semgrep-rules/shared \
+      #       --metrics=off \
+      #       --sarif --output semgrep.sarif \
+      #       --json  --output semgrep.json \
+      #       "${BASELINE_ARGS[@]}"
+      #   env:
+      #     # Belt-and-braces: kill any residual telemetry / cloud calls.
+      #     SEMGREP_SEND_METRICS: "off"
+      #     SEMGREP_ENABLE_VERSION_CHECK: "0"
+      #
+      # - name: Upload results as workflow artifact
+      #   if: always()
+      #   uses: internal-actions/upload-artifact@v4
+      #   with:
+      #     name: semgrep-results
+      #     path: |
+      #       semgrep.sarif
+      #       semgrep.json
+      #     retention-days: 30
