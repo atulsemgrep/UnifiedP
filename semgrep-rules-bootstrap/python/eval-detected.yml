@@ -1,0 +1,23 @@
+rules:
+  - id: appsec.python.eval-detected
+    message: |
+      Use of eval() risks arbitrary code execution if the argument is
+      derived from untrusted input. If eval() is genuinely required (e.g.
+      evaluating a pre-compiled, trusted AST), suppress with:
+
+        # nosemgrep: appsec.python.eval-detected — <reason>
+
+      Bare `# nosemgrep` will not match — pin the rule ID and include a
+      reason so the next reviewer can verify the judgment.
+    severity: WARNING
+    languages: [python]
+    metadata:
+      confidence: HIGH
+      category: security
+      cwe: "CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code"
+      owasp: "A03:2021 - Injection"
+      references:
+        - https://docs.python.org/3/library/functions.html#eval
+    pattern-either:
+      - pattern: eval(...)
+      - pattern: exec(...)

@@ -1,0 +1,24 @@
+# Paths ignored by every consumer repo, regardless of their own settings.
+# Keep this list short — repo-specific exclusions belong in the consumer's
+# own .semgrepignore.
+
+# Test code: deliberately exercises bad patterns; FP rate is too high to
+# be useful as a security signal.
+**/tests/
+**/test/
+**/__tests__/
+**/*_test.py
+**/test_*.py
+
+# Generated / vendored code: not under our control, scanning produces
+# noise without actionable findings.
+**/generated/
+**/__generated__/
+**/vendor/
+**/node_modules/
+**/.terraform/
+
+# Build artefacts.
+**/dist/
+**/build/
+**/__pycache__/
