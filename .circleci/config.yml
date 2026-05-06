@@ -10,7 +10,7 @@ jobs:
     # environment:
     #   SEMGREP_BASELINE_REF: << parameters.default_branch >>
     docker:
-      - image: returntocorp/semgrep
+      - image: returntocorp/semgrep:1.152.0
     steps:
       - checkout
       - jq/install

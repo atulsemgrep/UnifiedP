@@ -1,0 +1,12 @@
+# Demo rules for Cursor afterFileEdit hook: `semgrep --autofix` on save.
+rules:
+  - id: flask-debug-autofix-demo
+    languages: [python]
+    message: >
+      Never pass debug=True to Flask app.run — enables the Werkzeug interactive debugger (RCE if exposed).
+      This rule is intentionally narrow for the bad-python-app hook demo.
+    severity: ERROR
+    pattern: |
+      app.run(host="127.0.0.1", port=5000, debug=True)
+    fix: |
+      app.run(host="127.0.0.1", port=5000, debug=False)

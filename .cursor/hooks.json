@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": "bash .cursor/hooks/semgrep-autofix.sh",
+        "timeout": 120
+      }
+    ]
+  }
+}

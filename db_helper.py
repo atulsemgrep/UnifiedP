@@ -1,6 +1,7 @@
 import sqlite3
 import os
 from util import get_root_dir
+from werkzeug.security import generate_password_hash
 
 
 class DbHelper:
@@ -71,8 +72,8 @@ class DbHelper:
             cur = con.cursor()
 
             cur.execute('CREATE TABLE users (id integer, username text, password text, is_admin integer)')
-            cur.execute('INSERT INTO users VALUES (1, "admin", "e64b78fc3bc91bcbc7dc232ba8ec59e0", 1)') # password: Admin123
-            cur.execute('INSERT INTO users VALUES (2, "robso", "b3c634c91e1711c794704a031918a34b", 0)') # password: robso1980
+            cur.execute('INSERT INTO users VALUES (1, ?, 1)', (generate_password_hash('Admin123'),))
+            cur.execute('INSERT INTO users VALUES (2, ?, 0)', (generate_password_hash('robso1980'),))
             
             cur.execute('CREATE TABLE messages (message text)')
             cur.execute('INSERT INTO messages (message) VALUES ("This is vulnerable to stored xss")')

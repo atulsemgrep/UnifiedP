@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
+import os
+import secrets
+from flask import Flask, render_template, request, redirect, url_for, session
 from vulns.sql_injection.sql_injection_login import sql_injection_login_page, sql_injection_login_api
 from vulns.sql_injection.sql_injection_search import sql_injection_search_page
 from vulns.file_upload.file_upload import file_upload_page, file_upload_api
@@ -15,6 +17,16 @@ from middlewares import require_api_key
 
 
 app = Flask(__name__)
+app.secret_key = os.getenv('SECRET_KEY', 'unsafe-default-secret-change-me')
+
+
+def generate_csrf_token():
+    if '_csrf_token' not in session:
+        session['_csrf_token'] = secrets.token_urlsafe(16)
+    return session['_csrf_token']
+
+
+app.jinja_env.globals['csrf_token'] = generate_csrf_token
 
 app.config['TEMP_UPLOAD_FOLDER'] = f"{get_root_dir()}/temp/uploads"
 app.config['PUBLIC_UPLOAD_FOLDER'] = f"{get_root_dir()}/static/uploads"
@@ -30,7 +42,10 @@ app.db_models = db_models
 @app.before_request
 @require_api_key
 def before_request():
-    pass
+    if request.method == 'POST':
+        csrf_token = request.form.get('csrf_token') or request.form.get('csrfmiddlewaretoken')
+        if not csrf_token or csrf_token != session.get('_csrf_token'):
+            return 'Missing or invalid CSRF token', 400
 
 
 @app.route("/")
@@ -112,3 +127,9 @@ def idor_profile():
 @app.route('/iframe-injection', methods=['GET'])
 def iframe_injection():
     return iframe_injection_page(request, app)
+
+
+if __name__ == "__main__":
+    # Semgrep hook demo: if this line uses debug=True, Cursor afterFileEdit runs
+    # .cursor/hooks/semgrep-autofix.sh → semgrep --autofix (semgrep/autofix-demo.yml) and rewrites to False.
+    app.run(host="127.0.0.1", port=5000, debug=False)
