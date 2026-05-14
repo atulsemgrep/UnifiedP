@@ -1,0 +1,34 @@
+name: Semgrep Security Scan
+
+on:
+  pull_request: {}
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly full scan on Sundays
+
+permissions:
+  contents: read
+  pull-requests: write
+  statuses: write
+
+jobs:
+  semgrep-scan:
+    name: Semgrep Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 #v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install Semgrep
+        run: pip install semgrep==1.162.0
+
+      - name: Run Semgrep scan
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+        run: semgrep ci --no-suppress-errors --max-log-list-entries 50 --verbose 
