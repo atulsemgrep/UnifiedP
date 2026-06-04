@@ -1,0 +1,375 @@
+{
+  "version": 1,
+  "dependencies": {
+    ".NETFramework,Version=v4.8": {
+      "DevExpress.Charts": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "xSYSTIXXe3ar7Lkx+DLCEQk05tugLCOyGDzCZmOCxArkR/7q1W2tAls0FlxK/X/uiSyVy5r6fpc8Xi0SKF2/yA==",
+        "dependencies": {
+          "DevExpress.Charts.Core": "[24.1.6]",
+          "DevExpress.Data": "[24.1.6]",
+          "DevExpress.DataVisualization.Core": "[24.1.6]",
+          "DevExpress.Drawing": "[24.1.6]",
+          "DevExpress.Printing.Core": "[24.1.6]"
+        }
+      },
+      "DevExpress.Charts.Core": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "Ds7bP1G1+LE30nvFivTW5kD+EeyCZjGbwi0p3VT4UhnWB+HeZY0fVJ5YOwV8Q+ME8IvD1hE9X7FnGMiAxZWwpw==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]"
+        }
+      },
+      "DevExpress.CodeParser": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "h1T3OpMTXpstSLmtSDHZoxcfbkvdyeF7IZNvTQhzpH8YI/qRbEhjFG3/ZZte05Q/JI2pwQtPHJnjN5EN2LGdXw==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]"
+        }
+      },
+      "DevExpress.Data": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "LqIo7+Fm/vkCDvDuLoa2o0Swn4wlKGoQd/4gmeOLIu6kNcYqPoiR3h/VHouFNE5A99XP1Fvi5bgAzAZjD0kd7g=="
+      },
+      "DevExpress.DataAccess": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "eg3IyVFr/gWUnZPSQoxrwY6rYvOruxv/SOq6IyAVj7fFT9BGhqzN5umZVUl1wLu1gjDpIcjq3JgoSXUrna6ITw==",
+        "dependencies": {
+          "DevExpress.CodeParser": "[24.1.6]",
+          "DevExpress.Data": "[24.1.6]",
+          "DevExpress.Office.Core": "[24.1.6]",
+          "DevExpress.Printing.Core": "[24.1.6]",
+          "DevExpress.RichEdit.Core": "[24.1.6]",
+          "DevExpress.Xpo": "[24.1.6]"
+        }
+      },
+      "DevExpress.DataVisualization.Core": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "ucUDKuDLBhgEJJVHX5FMItMoUTaJKRbbszx9yzBRs1GxD+G2v1KlGHCHCiiVkghWhZ4EFOpxxArRjRN6YqlzyQ==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]",
+          "DevExpress.Drawing": "[24.1.6]"
+        }
+      },
+      "DevExpress.Document.Processor": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "smeVh2zJBEqu2AnB+Uv1slMV/aUXx6RnQ/i6e0UV+3geY5eOLBYMpk6VIu0P7u6DxiWYctrI1kamxmuJKF7jnw==",
+        "dependencies": {
+          "DevExpress.Charts": "[24.1.6]",
+          "DevExpress.Data": "[24.1.6]",
+          "DevExpress.DataAccess": "[24.1.6]",
+          "DevExpress.DataVisualization.Core": "[24.1.6]",
+          "DevExpress.Drawing": "[24.1.6]",
+          "DevExpress.Office.Core": "[24.1.6]",
+          "DevExpress.Pdf.Core": "[24.1.6]",
+          "DevExpress.Pdf.Drawing": "[24.1.6]",
+          "DevExpress.Printing.Core": "[24.1.6]",
+          "DevExpress.RichEdit.Core": "[24.1.6]",
+          "DevExpress.Snap.Core": "[24.1.6]",
+          "DevExpress.Spreadsheet.Core": "[24.1.6]",
+          "DevExpress.TreeMap": "[24.1.6]"
+        }
+      },
+      "DevExpress.Drawing": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "ybnMt/p9e4rUS0vC8tqFlpuldNCRpEV8E+gxXWMe5DFbeceu0n8fREb6J76iQ1AhIbGNYVFRQJvJS39TO5jFXg==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]"
+        }
+      },
+      "DevExpress.Office.Core": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "MvCWwbKFaQXA1EXTnIOKHwB3855ST/UZ1r86mhwLCEpPnMz17eQcHZT2oXPgBnwne80MT3yWSiMDnem3Fr6SUw==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]",
+          "DevExpress.Drawing": "[24.1.6]",
+          "DevExpress.Pdf.Core": "[24.1.6]",
+          "DevExpress.Printing.Core": "[24.1.6]"
+        }
+      },
+      "DevExpress.Pdf.Core": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "RUnN49BEgyYZ6EzDgU+SK6negC/YJa5k+a4ruFYe85T4oS+oNwuqwwDWf8a7MktPkfaKbtVNIKrtQgj2jMlcrw==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]",
+          "DevExpress.Drawing": "[24.1.6]"
+        }
+      },
+      "DevExpress.Pdf.Drawing": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "hlIJDRoHRe1Y2tn4+kQ6rH5KC4e4uY9/hg5LzxWBz5mOBKSEo6pAdm7vcRYbCqLDDGp64e1t43UhS2A1KhrIhw==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]",
+          "DevExpress.Drawing": "[24.1.6]",
+          "DevExpress.Pdf.Core": "[24.1.6]"
+        }
+      },
+      "DevExpress.Printing.Core": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "iJHYnyUAovQdk28a5xyartWeDHIMBCeyOW49qokTwHbHOvpohSvGYPdJSlOAl0tx/+1IgY7+8DW2e977pcPtLA==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]",
+          "DevExpress.Drawing": "[24.1.6]",
+          "DevExpress.Pdf.Core": "[24.1.6]",
+          "DevExpress.Pdf.Drawing": "[24.1.6]"
+        }
+      },
+      "DevExpress.RichEdit.Core": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "FDs8w3PontTfkJxIHG82UhcYKazHMop6yb0z6ZFnjKnBDasV1ZI3wPoJXxYmgbhr0pvWd3UrSgj3T9j+KOfXmg==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]",
+          "DevExpress.Drawing": "[24.1.6]",
+          "DevExpress.Office.Core": "[24.1.6]",
+          "DevExpress.Pdf.Core": "[24.1.6]",
+          "DevExpress.Printing.Core": "[24.1.6]"
+        }
+      },
+      "DevExpress.Snap.Core": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "UIB79r4MJl3EGzSwNJeIsdSiCToslnLARuxXHvD7ogUdjzEr8GGdvZpCYC65I0yYdCxAARpDJEeqOnqBPfXxtg==",
+        "dependencies": {
+          "DevExpress.Charts": "[24.1.6]",
+          "DevExpress.Charts.Core": "[24.1.6]",
+          "DevExpress.Data": "[24.1.6]",
+          "DevExpress.DataAccess": "[24.1.6]",
+          "DevExpress.Drawing": "[24.1.6]",
+          "DevExpress.Office.Core": "[24.1.6]",
+          "DevExpress.Printing.Core": "[24.1.6]",
+          "DevExpress.RichEdit.Core": "[24.1.6]",
+          "DevExpress.Sparkline.Core": "[24.1.6]"
+        }
+      },
+      "DevExpress.Sparkline.Core": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "eEU1mP+GxQBDdev3IX4cV+ceWenQ1JI2xZqI2R7gPIp90OO2Oai0xh1VWTWmIHWKl5zyoDY4EuGsYdI7OROSZw==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]",
+          "DevExpress.Drawing": "[24.1.6]"
+        }
+      },
+      "DevExpress.Spreadsheet.Core": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "EOOVjybr/9WA7ydFN1kGyCLC9reOmcBGG7CI5gUAYak5xsEbXzMPg24fvkqixtOt/d8PEYIjaKdGzlM5zuaLLQ==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]",
+          "DevExpress.DataAccess": "[24.1.6]",
+          "DevExpress.DataVisualization.Core": "[24.1.6]",
+          "DevExpress.Drawing": "[24.1.6]",
+          "DevExpress.Office.Core": "[24.1.6]",
+          "DevExpress.Pdf.Core": "[24.1.6]",
+          "DevExpress.Printing.Core": "[24.1.6]",
+          "DevExpress.Sparkline.Core": "[24.1.6]"
+        }
+      },
+      "DevExpress.TreeMap": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "eNgf0H+JVedB4nZQG+Gt1yWTp+29o7mue2SHwbaljYPU3wG4TLaMQ1WCnsmKZljdT9jMCKVuKXTn9s0JgJHoTw==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]",
+          "DevExpress.DataVisualization.Core": "[24.1.6]",
+          "DevExpress.Drawing": "[24.1.6]",
+          "DevExpress.Printing.Core": "[24.1.6]",
+          "DevExpress.TreeMap.Core": "[24.1.6]"
+        }
+      },
+      "DevExpress.TreeMap.Core": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "AiUhJWCUVfA5WOghtRydwLzDygRol23plIrTCGIn5u/cS6G94ABG9KnqadzYCpheJkPmJkuYv7OiLBQFk2vWeg==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]"
+        }
+      },
+      "DevExpress.Xpo": {
+        "type": "Direct",
+        "requested": "[24.1.6, )",
+        "resolved": "24.1.6",
+        "contentHash": "M4EMn6nwWqm/VWOQF0YNluoa01ZaNeh4Zu8rBqD8l/TWW/MugyKt1XE1pXTZWNXnZlZ/QnUiEk7QBMrPoV8vCQ==",
+        "dependencies": {
+          "DevExpress.Data": "[24.1.6]"
+        }
+      },
+      "DevExtreme.AspNet.Data": {
+        "type": "Direct",
+        "requested": "[2.6.1, )",
+        "resolved": "2.6.1",
+        "contentHash": "nCC6go5h4gMD3GyRZgOvEEt1szHvl/kCDxoemBHFcvk1LYrnMaQrUNbYEh4dF4cD09HPFV9znc5Sfwvk2pOE6Q==",
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.1"
+        }
+      },
+      "Microsoft.AspNet.Identity.Core": {
+        "type": "Direct",
+        "requested": "[2.2.3, )",
+        "resolved": "2.2.3",
+        "contentHash": "Mv5FpoaxspE8hlWLE4r1IdZtovg/OyFgVRhxQbx47J4sqdLImN1hnM1lnwCj+/wLmqtqFk/RYMoZ5GAcwm/00g=="
+      },
+      "Microsoft.AspNet.SignalR.Core": {
+        "type": "Direct",
+        "requested": "[2.2.2, )",
+        "resolved": "2.2.2",
+        "contentHash": "sIpoQK2pFlKsy+1s5j6zsZl4mgp3RN7GEZhBiz3PJjGhzjdwhu8xypcofTwWiqUVgVF0BkKR9GTGZy8wV4kmJQ==",
+        "dependencies": {
+          "Microsoft.Owin": "2.1.0",
+          "Microsoft.Owin.Security": "2.1.0",
+          "Newtonsoft.Json": "6.0.4",
+          "Owin": "1.0.0"
+        }
+      },
+      "MiniProfiler": {
+        "type": "Direct",
+        "requested": "[3.1.1.140, )",
+        "resolved": "3.1.1.140",
+        "contentHash": "iUnUhcDRZPUvq1jd1piprG6ynCUjuEG22GltzE5T3w4YxGO+LlYR7A8r050fOt6IOFOHV5jpYZe/gHPnxvltuw=="
+      },
+      "Newtonsoft.Json": {
+        "type": "Direct",
+        "requested": "[12.0.3, )",
+        "resolved": "12.0.3",
+        "contentHash": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg=="
+      },
+      "Serilog": {
+        "type": "Direct",
+        "requested": "[4.0.0, )",
+        "resolved": "4.0.0",
+        "contentHash": "2jDkUrSh5EofOp7Lx5Zgy0EB+7hXjjxE2ktTb1WVQmU00lDACR2TdROGKU0K1pDTBSJBN1PqgYpgOZF8mL7NJw==",
+        "dependencies": {
+          "System.Diagnostics.DiagnosticSource": "8.0.1",
+          "System.Threading.Channels": "8.0.0"
+        }
+      },
+      "Serilog.Formatting.Compact": {
+        "type": "Direct",
+        "requested": "[3.0.0, )",
+        "resolved": "3.0.0",
+        "contentHash": "wQsv14w9cqlfB5FX2MZpNsTawckN4a8dryuNGbebB/3Nh1pXnROHZov3swtu3Nj5oNG7Ba+xdu7Et/ulAUPanQ==",
+        "dependencies": {
+          "Serilog": "4.0.0"
+        }
+      },
+      "Serilog.Sinks.File": {
+        "type": "Direct",
+        "requested": "[6.0.0, )",
+        "resolved": "6.0.0",
+        "contentHash": "lxjg89Y8gJMmFxVkbZ+qDgjl+T4yC5F7WSLTvA+5q0R04tfKVLRL/EHpYoJ/MEQd2EeCKDuylBIVnAYMotmh2A==",
+        "dependencies": {
+          "Serilog": "4.0.0"
+        }
+      },
+      "System.Buffers": {
+        "type": "Direct",
+        "requested": "[4.5.1, )",
+        "resolved": "4.5.1",
+        "contentHash": "Rw7ijyl1qqRS0YQD/WycNst8hUUMgrMH4FCn1nNm27M4VxchZ1js3fVjQaANHO5f3sN4isvP4a+Met9Y4YomAg=="
+      },
+      "System.Numerics.Vectors": {
+        "type": "Direct",
+        "requested": "[4.5.0, )",
+        "resolved": "4.5.0",
+        "contentHash": "QQTlPTl06J/iiDbJCiepZ4H//BVraReU4O4EoRw1U02H5TLUIT7xn3GnDp9AXPSlJUDyFs4uWjWafNX6WrAojQ=="
+      },
+      "Microsoft.Owin": {
+        "type": "Transitive",
+        "resolved": "2.1.0",
+        "contentHash": "lk0kK64mlmcmtWX8YOYkZsnZKDoGEzMZhe8e1bcP+FFcgD4f2QfKwvu5Z8Bh8WS0VO7Rgk+DJ0hwW0k+S/UGMg==",
+        "dependencies": {
+          "Owin": "1.0.0"
+        }
+      },
+      "Microsoft.Owin.Security": {
+        "type": "Transitive",
+        "resolved": "2.1.0",
+        "contentHash": "4n1V0p+O6W1L0xHUM8Cjp2Y+MmmUkiCZv6PvRNIDCJD9zlerBJa2HECo9lUiWC+KuasQJ3QxB1FmipNBxdXXIQ==",
+        "dependencies": {
+          "Microsoft.Owin": "2.1.0",
+          "Owin": "1.0.0"
+        }
+      },
+      "Owin": {
+        "type": "Transitive",
+        "resolved": "1.0.0",
+        "contentHash": "OseTFniKmyp76mEzOBwIKGBRS5eMoYNkMKaMXOpxx9jv88+b6mh1rSaw43vjBOItNhaLFG3d0a20PfHyibH5sw=="
+      },
+      "System.Diagnostics.DiagnosticSource": {
+        "type": "Transitive",
+        "resolved": "8.0.1",
+        "contentHash": "vaoWjvkG1aenR2XdjaVivlCV9fADfgyhW5bZtXT23qaEea0lWiUljdQuze4E31vKM7ZWJaSUsbYIKE3rnzfZUg==",
+        "dependencies": {
+          "System.Memory": "4.5.5",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        }
+      },
+      "System.Memory": {
+        "type": "Transitive",
+        "resolved": "4.5.5",
+        "contentHash": "XIWiDvKPXaTveaB7HVganDlOCRoj03l+jrwNvcge/t8vhGYKvqV+dMv6G4SAX2NoNmN0wZfVPTAlFwZcZvVOUw==",
+        "dependencies": {
+          "System.Buffers": "4.5.1",
+          "System.Numerics.Vectors": "4.5.0",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.3"
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe": {
+        "type": "Transitive",
+        "resolved": "6.0.0",
+        "contentHash": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg=="
+      },
+      "System.Threading.Channels": {
+        "type": "Transitive",
+        "resolved": "8.0.0",
+        "contentHash": "CMaFr7v+57RW7uZfZkPExsPB6ljwzhjACWW1gfU35Y56rk72B/Wu+sTqxVmGSk4SFUlPc3cjeKND0zktziyjBA==",
+        "dependencies": {
+          "System.Threading.Tasks.Extensions": "4.5.4"
+        }
+      },
+      "System.Threading.Tasks.Extensions": {
+        "type": "Transitive",
+        "resolved": "4.5.4",
+        "contentHash": "zteT+G8xuGu6mS+mzDzYXbzS7rd3K6Fjb9RiZlYlJPam2/hU7JCBZBVEcywNuR+oZ1ncTvc/cq0faRr3P01OVg==",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "4.5.3"
+        }
+      }
+    },
+    ".NETFramework,Version=v4.8/win": {},
+    ".NETFramework,Version=v4.8/win-arm64": {},
+    ".NETFramework,Version=v4.8/win-x64": {},
+    ".NETFramework,Version=v4.8/win-x86": {}
+  }
+}
